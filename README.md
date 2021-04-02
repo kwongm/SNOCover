@@ -1,4 +1,4 @@
-- 👋 Hi, I’m @kwongm
+- 👋 Hi, I’m @kwongm!
 - 👀 I’m interested in healthcare-related data science/algorithms for SNOMED CT analysis and EKG data analysis. 
 - 🌱 I’m currently learning about NLP algorithms for parsing clinical raw text data and building NLP pipelines to map to SNOMED CT concept terms. 
 - 💞️ I’m looking to collaborate on Clinical care data analysis, NLP algorithms and any interesting topic I hear about!
