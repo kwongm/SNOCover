@@ -154,6 +154,9 @@ def outputSortedTermsAndConceptsTuples(list):
 # find the identifiers that a snomed term may contain to be used for removal, as these may affect nlp stemming/tagging later on.
 # ex. Esophageal injury (disorder) ---> want to extract (disorder).
 
+
+# === PREPROCESSING OUT ONLY DIAGNOSES === #
+
 def findIdentifiers(list):
 
     identifiers = []

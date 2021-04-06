@@ -43,7 +43,7 @@ def preprocessSnomedFile():
     non_ascii_chars = findNonAsciiCharacters(t)
 
     # build a dictionary that holds non-ascii keys with ascii replacement values.
-    non_ascii_dict = stopWordDictCreation("non_ascii_characters_and_replacements.txt")
+    non_ascii_dict = stopWordDictCreation("input/non_ascii_characters_and_replacements.txt")
 
     # remove non-ascii characters from list of terms.
     terms_nonascii_removed = replaceNonAsciiChars(t, non_ascii_dict)
