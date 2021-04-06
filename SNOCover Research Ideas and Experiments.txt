@@ -1,0 +1,7 @@
+Ideas:
+
+Use stemmng to reduce the SNOMED phrases into base/root forms
+
+ex. cardiology, cardiac, cardiologist ---> (stem) cardi
+
+Experiment #1: Find how different descriptions are that belong to same concept id. 
