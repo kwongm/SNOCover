@@ -23,8 +23,8 @@
 
 # ========== Packages ========== #
 
-from SNOCover_methods import *
-from SNOCover_preprocessing import *
+from snocover_methods import *
+from snocover_preprocessing import *
 from KwongmGeneralMethods import askUser
 
 

@@ -1,12 +1,16 @@
 """
 =======================////// SNOCover //////=============================
-   NAME: Main.py
+   NAME: snocover_identify_nonascii.py
 
    Project:  SNOCover
    
    CREATED: Marcus Kwong
 
-   FUNCTION: SNOCover preprocessing file : identification and replacement of non-ascii characters
+   FUNCTION: SNOCover preprocessing file : identification of non-ascii characters.
+   
+   INPUT: SNOMED CT snapshot description .txt file
+
+   OUTPUT: list of non-ascii characters that need to be replaced by user.
 
    ENVIRONMENT: Python 3.8.6
 
@@ -20,7 +24,7 @@
    
 =======================////// iMS //////=============================
 """
-from SNOCover_methods import *
+from snocover_methods import *
 from KwongmGeneralMethods import askUser
 
 SNOMED_FILE = "snomed_03012021_snapshot_description.txt"
@@ -29,7 +33,7 @@ SNOMED_FILE = "snomed_03012021_snapshot_description.txt"
 # Outputs a list of all non-ascii characters found in the SNOMED CT file. The User
 # will need to go through this list an assign replacement values for each one.  
 
-    # grab all the non-ascii characters within the terms list.
+# grab all the non-ascii characters within the terms list.
 def createListOfNonAsciiCharacters():
 
    file = loadFile(SNOMED_FILE)
@@ -40,7 +44,19 @@ def createListOfNonAsciiCharacters():
    concept_ids = filterConceptIds(file)
    non_ascii_chars = findNonAsciiCharacters(terms)
 
+   ord_values = []
+
    for i in range(len(non_ascii_chars)):
-      print(non_ascii_chars[i] + ':')
+      ord_values.append(str(ord(non_ascii_chars[i])))
 
    print(len(non_ascii_chars))
+
+   print(len(ord_values))
+
+   file_object = open("nonascii_to_replace.txt", "w", encoding="utf-8")
+    
+   for i in range(len(non_ascii_chars)):
+
+      file_object.write(non_ascii_chars[i] + ':' + ord_values[i] + '\n')
+
+   file_object.close()

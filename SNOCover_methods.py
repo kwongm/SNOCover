@@ -88,6 +88,22 @@ def findNonAsciiCharacters(file):
                         non_ascii_set.append(line[i])
     return non_ascii_set
 
+# grab all the non-ascii characters within the terms list.
+def createListOfNonAsciiCharacters(terms):
+
+   non_ascii_chars = findNonAsciiCharacters(terms)
+   ord_values = []
+
+   for i in range(len(non_ascii_chars)):
+      ord_values.append(str(ord(non_ascii_chars[i])))
+
+   file_object = open("nonascii_to_replace.txt", "w", encoding="utf-8")
+    
+   for i in range(len(non_ascii_chars)):
+      file_object.write(non_ascii_chars[i] + ':' + ord_values[i] + '\n')
+
+   file_object.close()
+
 # replace all non-ascii values in SNOMED CT description file terms list using a non-ascii to ascii replacement dictionary.
 def replaceNonAsciiChars(file, dict):
 
