@@ -24,7 +24,7 @@
 # ========== Packages ========== #
 
 from SNOCover_methods import *
-from remove_nonascii.py import *
+from remove_nonascii import *
 from KwongmGeneralMethods import askUser
 
 

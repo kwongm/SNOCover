@@ -25,3 +25,6 @@ from KwongmGeneralMethods import askUser
 
 # PART I: Find all non-ascii terms within a .txt file containing a list of SNOMED CT terms.
 # PART II: Take a .txt file containing a list of SNOMED CT terms, and replace all the non-ascii characters with ascii replacements. 
+
+def test():
+   return 1
