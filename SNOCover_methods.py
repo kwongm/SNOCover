@@ -70,7 +70,7 @@ def filterConceptIds(file):
         concept_ids.append(line[4])
     return concept_ids
 
-# === PREPROCESSING === #
+# === PREPROCESSING: Removal of Non-Ascii Characters === #
 
 # find all non-ascii characters (>128 and <32) from a given .txt file.
 def findNonAsciiCharacters(file):
@@ -88,23 +88,7 @@ def findNonAsciiCharacters(file):
                         non_ascii_set.append(line[i])
     return non_ascii_set
 
-# build a non-ascii to ascii replacement char dictionary from a txt file.
-def stopWordDictCreation(filename):
-    non_ascii_characers = []
-    ascii_replacements = []
-    with open(filename, 'r', encoding="utf8") as file:
-        for line in file.readlines():
-            non = line.split(':')[0]
-            rep = line.split(':')[1].rstrip()
-            non_ascii_characers.append(non)
-            ascii_replacements.append(rep)
-
-    res = {non_ascii_characers[i]: ascii_replacements[i] for i in range(len(non_ascii_characers))}
-
-    return res
-
 # replace all non-ascii values in SNOMED CT description file terms list using a non-ascii to ascii replacement dictionary.
-
 def replaceNonAsciiChars(file, dict):
 
     # num = 0
@@ -124,8 +108,24 @@ def replaceNonAsciiChars(file, dict):
     # print("total lines changed: ", num)
     return file
 
-# remove stop words in SNOMED CT description file terms list from a list of stop words. 
+# build a non-ascii to ascii replacement char dictionary from a txt file.
+def nonAsciiDictCreation(filename):
+    non_ascii_characers = []
+    ascii_replacements = []
+    with open(filename, 'r', encoding="utf8") as file:
+        for line in file.readlines():
+            non = line.split(':')[0]
+            rep = line.split(':')[1].rstrip()
+            non_ascii_characers.append(non)
+            ascii_replacements.append(rep)
 
+    res = {non_ascii_characers[i]: ascii_replacements[i] for i in range(len(non_ascii_characers))}
+
+    return res
+
+# === PREPROCESSING: Stop Word Removal === #
+
+# remove stop words in SNOMED CT description file terms list from a list of stop words. 
 def removeStopWords(list):
     c = 0
 
@@ -140,7 +140,6 @@ def removeStopWords(list):
     return list
 
 # output the list of tuples (term, concept id) and output them to a .txt file for further analysis.
-
 def outputSortedTermsAndConceptsTuples(list):
     file_object = open("sorted_snomed_terms_and_concepts_list.txt", "w")
     

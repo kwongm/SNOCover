@@ -24,16 +24,20 @@
 # ========== Packages ========== #
 
 from SNOCover_methods import *
+from remove_nonascii.py import *
 from KwongmGeneralMethods import askUser
 
 
 def preprocessSnomedFile():
 
+   # === LOAD SNOMED CT DATA === #
     snapshot_desc_file = "snomed_03012021_snapshot_description.txt"
     file = loadFile(snapshot_desc_file)
     filtered_file = filterConceptIDAndTerm(file)
     terms = filterTerms(file)
     concept_ids = filterConceptIds(file)
+
+    # ==== STEP I: Identify/Remove Non-Ascii characters from SNOMED CT Descriptions ==== #
 
     # NOTE: variables are passed by REFERENCE, not by value when passed as an argument for a function.
     # In order to preserve the previous list, we must copy the list to another variable instead.
@@ -43,7 +47,7 @@ def preprocessSnomedFile():
     non_ascii_chars = findNonAsciiCharacters(t)
 
     # build a dictionary that holds non-ascii keys with ascii replacement values.
-    non_ascii_dict = stopWordDictCreation("input/non_ascii_characters_and_replacements.txt")
+    non_ascii_dict = nonAsciiDictCreation("input/non_ascii_characters_and_replacements.txt")
 
     # remove non-ascii characters from list of terms.
     terms_nonascii_removed = replaceNonAsciiChars(t, non_ascii_dict)
